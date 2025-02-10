@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Course Recommender System</title>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen flex flex-col items-center justify-center text-white">
+    <header class="w-full py-4 px-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Course Recommender System</h1>
+        <nav>
+            <a href="javascript:void(0);" class="mx-2 text-lg hover:underline">Home</a>
+            <a href="/dashboard" class="mx-2 text-lg hover:underline">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="w-full max-w-4xl p-6">
+        <section class="text-center">
+            <h2 class="text-3xl font-semibold mb-4">Discover Your Next Learning Opportunity</h2>
+            <p class="mb-6">Enter the course name to find personalized recommendations.</p>
+
+            <form action="/" method="POST" class="flex flex-col md:flex-row items-center gap-4 justify-center">
+                <input 
+                    type="text" 
+                    name="course" 
+                    id="course" 
+                    placeholder="Search for a course..." 
+                    class="w-full md:w-3/4 px-4 py-2 text-black rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <button 
+                    type="submit" 
+                    class="bg-indigo-600 hover:bg-indigo-800 px-6 py-2 rounded-lg font-semibold transition">Search</button>
+            </form>
+        </section>
+
+       
+        <section class="mt-8 text-center">
+            <h3 class="text-xl">Recommendations for <span class="font-bold text-yellow-400">"{{ coursename }}"</span></h3>
+        </section>
+     
+        <section class="mt-8">
+            <div class="glass-card p-6 text-center">
+                <h4 class="text-xl font-bold">Course Not Found</h4>
+                <p class="mt-2">The course "{{ coursename }}" is currently unavailable. We'll notify the administrator about this.</p>
+                <a href="/" class="mt-4 inline-block bg-red-500 hover:bg-red-700 px-4 py-2 rounded-lg font-semibold transition">Go Back</a>
+            </div>
+        </section>
+     
+
+        <section class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+            <div class="glass-card p-4">
+                <h5 class="font-bold text-lg">{{ course }}</h5>
+                <a 
+                    href="{{ coursemap[course] }}" 
+                    target="_blank" 
+                    class="mt-4 inline-block bg-yellow-400 hover:bg-yellow-600 px-4 py-2 rounded-lg font-semibold transition">View Course</a>
+            </div>
+        
+        </section>
+      
+    </main>
+
+    <footer class="mt-12 py-6 text-center">
+        <p class="text-sm">&copy; 2025 Course Recommender System. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
